@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
 
   login(){
     var request: Authenticationrequest = new Authenticationrequest(this.loginFormGroup.get("username")?.value, this.loginFormGroup.get("password")?.value);
-      
+
     if(this.loginFormGroup.valid){
       this.authenticationService.userLogin(request).then(()=>{
         //todo Validate token expiry before redirect
@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
         this.authenticationService.redirectTo('/tabs/dashboard');
        }
       });
-    }  
+    }
   }
 
   register(){
@@ -66,20 +66,43 @@ export class LoginPage implements OnInit {
         this.setOpen(true);
         return;
       }
-  
+
       var request: RegistrationRequest = new RegistrationRequest(this.registerFormGroup.get("firstName")?.value,
       this.registerFormGroup.get("lastName")?.value,
       this.registerFormGroup.get("entityNumber")?.value,
       this.registerFormGroup.get("email")?.value,
       this.registerFormGroup.get("mobile")?.value,
       this.registerFormGroup.get("username")?.value,
-      this.registerFormGroup.get("password")?.value); 
-  
+      this.registerFormGroup.get("password")?.value);
+
       this.authenticationService.userRegister(request).then((data:any)=>{
         this.toastMessage = data;
         this.setOpen(true);
       });
-    }  
+    }
+  }
+
+  registerC(){
+    if(this.registerFormGroup.valid){
+      if(this.registerFormGroup.get("password")?.value != this.registerFormGroup.get("confirmPassword")?.value){
+        this.toastMessage = "Confirm Password is not the same as the password you provided.";
+        this.setOpen(true);
+        return;
+      }
+
+      var request: RegistrationRequest = new RegistrationRequest(this.registerFormGroup.get("firstName")?.value,
+      this.registerFormGroup.get("lastName")?.value,
+      this.registerFormGroup.get("entityNumber")?.value,
+      this.registerFormGroup.get("email")?.value,
+      this.registerFormGroup.get("mobile")?.value,
+      this.registerFormGroup.get("username")?.value,
+      this.registerFormGroup.get("password")?.value);
+
+      this.authenticationService.userRegister(request).then((data:any)=>{
+        this.toastMessage = data;
+        this.setOpen(true);
+      });
+    }
   }
 
 
