@@ -1,25 +1,20 @@
 export class RegistrationRequest{
     firstname: String;
     lastname: String;
-    entityNo: String;
-    email: String;
     mobile: String;
-    username: String;
+    email: String;
     password: String;
 
     constructor(firstname: String,
         lastname: String,
-        entityNo: String,
-        email: String,
         mobile: String,
-        username: String,
+        email: String,
         password: String){
             this.firstname = firstname;
             this.lastname = lastname;
-            this.entityNo = entityNo;
             this.email = email;
             this.mobile = mobile;
-            this.username = username;
+            this.email = email;
             this.password = password;
 
     }

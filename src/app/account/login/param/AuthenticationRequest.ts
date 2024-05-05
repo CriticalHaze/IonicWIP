@@ -1,9 +1,9 @@
 export class Authenticationrequest{
-    username: String;
+    email: String;
     password: String;
     
-    constructor(username: String, password: String){
-        this.username = username;
+    constructor(email: String, password: String){
+        this.email = email;
         this.password = password;
     }
 }

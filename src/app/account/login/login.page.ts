@@ -14,16 +14,14 @@ export class LoginPage implements OnInit {
 
   screen: any = 'signin';
   loginFormGroup: FormGroup = new FormGroup({
-    username: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
   });
   registerFormGroup: FormGroup = new FormGroup({
     firstName: new FormControl("", [Validators.required]),
     lastName: new FormControl("", [Validators.required]),
-    entityNumber: new FormControl("", [Validators.required]),
     email: new FormControl("", [Validators.required, Validators.email]),
     mobile: new FormControl("", [Validators.required]),
-    username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
     confirmPassword: new FormControl("", [Validators.required])
   });
@@ -47,7 +45,7 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    var request: Authenticationrequest = new Authenticationrequest(this.loginFormGroup.get("username")?.value, this.loginFormGroup.get("password")?.value);
+    var request: Authenticationrequest = new Authenticationrequest(this.loginFormGroup.get("email")?.value, this.loginFormGroup.get("password")?.value);
 
     if(this.loginFormGroup.valid){
       this.authenticationService.userLogin(request).then(()=>{
@@ -69,12 +67,9 @@ export class LoginPage implements OnInit {
 
       var request: RegistrationRequest = new RegistrationRequest(this.registerFormGroup.get("firstName")?.value,
       this.registerFormGroup.get("lastName")?.value,
-      this.registerFormGroup.get("entityNumber")?.value,
       this.registerFormGroup.get("email")?.value,
       this.registerFormGroup.get("mobile")?.value,
-      this.registerFormGroup.get("username")?.value,
       this.registerFormGroup.get("password")?.value);
-
       this.authenticationService.userRegister(request).then((data:any)=>{
         this.toastMessage = data;
         this.setOpen(true);
@@ -92,12 +87,9 @@ export class LoginPage implements OnInit {
 
       var request: RegistrationRequest = new RegistrationRequest(this.registerFormGroup.get("firstName")?.value,
       this.registerFormGroup.get("lastName")?.value,
-      this.registerFormGroup.get("entityNumber")?.value,
       this.registerFormGroup.get("email")?.value,
       this.registerFormGroup.get("mobile")?.value,
-      this.registerFormGroup.get("username")?.value,
       this.registerFormGroup.get("password")?.value);
-
       this.authenticationService.userRegister(request).then((data:any)=>{
         this.toastMessage = data;
         this.setOpen(true);

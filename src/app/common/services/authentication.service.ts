@@ -45,7 +45,7 @@ export class AuthenticationService {
     let token: any = localStorage.getItem(ELookup.TOKEN_NAME);
     return token; 
   }
-  get username(){
+  get email(){
     let tokenDecoded = this.jwtHelper.decodeToken(this.token);
     return tokenDecoded.sub;
   }
